@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BlogReply index{% endblock %}
+
+{% block body %}
+    <h1>BlogReply index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Message</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blog_reply in blog_replies %}
+            <tr>
+                <td>{{ blog_reply.id }}</td>
+                <td>{{ blog_reply.Nom }}</td>
+                <td>{{ blog_reply.Message }}</td>
+                <td>
+                    <a href="{{ path('blog_reply_show', {'id': blog_reply.id}) }}">show</a>
+                    <a href="{{ path('blog_reply_edit', {'id': blog_reply.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('blog_reply_new') }}">Create new</a>
+{% endblock %}
